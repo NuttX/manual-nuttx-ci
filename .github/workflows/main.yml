@@ -85,7 +85,7 @@ jobs:
           echo "   Host platform: ${{ inputs.host-platform }}"
 
       - name: Checkout Matrix
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
           path: sources
  
@@ -141,7 +141,7 @@ jobs:
           echo "Working with ref: $REF"
 
       - name: Checkout nuttx repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
           repository: ${{ inputs.repo-nuttx }}
           ref: ${{ inputs.branch-nuttx }}
@@ -149,7 +149,7 @@ jobs:
           fetch-depth: 1
 
       - name: Checkout apps repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
         with:
           repository: ${{ inputs.repo-apps }}
           ref: ${{ inputs.branch-apps }}
@@ -160,7 +160,7 @@ jobs:
         run: tar zcf sources.tar.gz sources
 
       - name: Archive Source Bundle
-        uses: actions/upload-artifact@v7.0.0
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         with:
           name: source-bundle
           path: sources.tar.gz
@@ -234,7 +234,7 @@ jobs:
         if: always()
         run: df -h
 
-      - uses: actions/upload-artifact@v7.0.0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         if: ${{ always() }}
         with:
           name: ${{ github.job }}-${{matrix.boards}}-builds
@@ -279,7 +279,7 @@ jobs:
             cd sources/nuttx
             ./tools/ci/cibuild-oot.sh
 
-      - uses: actions/upload-artifact@v7.0.0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         if: ${{ always() }}
         with:
           name: ${{ github.job }}-artifacts
@@ -329,7 +329,7 @@ jobs:
           cd sources/nuttx/tools/ci
           ./cibuild.sh -i -c -A -R testlist/${{matrix.boards}}.dat
 
-      - uses: actions/upload-artifact@v7.0.0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         with:
           name: ${{ github.job }}-${{matrix.boards}}-builds
           path: buildartifacts/
@@ -349,7 +349,7 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
       - uses: msys2/setup-msys2@v2
         with:
           msystem: MSYS
@@ -410,7 +410,7 @@ jobs:
           cd sources/nuttx/tools/ci
           ./cibuild.sh -g -i -A -C -N -R testlist/${{matrix.boards}}.dat
 
-      - uses: actions/upload-artifact@v7.0.0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         with:
           name: ${{ github.job }}-${{matrix.boards}}-builds
           path: buildartifacts/
@@ -427,7 +427,7 @@ jobs:
 
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
       - name: Set up Python and install kconfiglib
         uses: actions/setup-python@v6
         with:
@@ -457,7 +457,7 @@ jobs:
           cd sources\nuttx\tools\ci
           .\cibuild.ps1 -n -i -A -C -N testlist\${{matrix.boards}}.dat
 
-      - uses: actions/upload-artifact@v7.0.0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         with:
           name: ${{ github.job }}-${{matrix.boards}}-builds
           path: ./sources/buildartifacts/
