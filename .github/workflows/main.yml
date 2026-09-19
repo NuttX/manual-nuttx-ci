@@ -214,13 +214,15 @@ jobs:
           run: |
             export ARTIFACTDIR=`pwd`/buildartifacts
 
-            pip install ntfc==0.0.1
+            pip install ntfc==0.0.3
             mkdir /github/workspace/nuttx-ntfc
             mkdir /github/workspace/nuttx-ntfc/external
             cd /github/workspace/nuttx-ntfc
             # get NTFC test cases
             cd external
-            git clone -b release-0.0.1 https://github.com/apache/nuttx-ntfc-testing
+            git clone -b release-0.0.2 https://github.com/apache/nuttx-ntfc-testing
+
+            mv nuttx-ntfc-testing nuttx-testing
             export NTFCDIR=/github/workspace/nuttx-ntfc
 
             echo "::add-matcher::sources/nuttx/.github/gcc.json"
