@@ -171,6 +171,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_BUILDKIT: 1
+      # Documented sim/login CI test credential (not a production secret).
+      # Used when CONFIG_BOARD_ETC_ROMFS_PASSWD_ENABLE=y and defconfig omits
+      # the password.  See tools/update_romfs_password.sh.
+      NUTTX_ROMFS_PASSWD_PASSWORD: NuttXSim1!
 
     strategy:
       fail-fast: false
